@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Employee List</title>
+  </head>
+  <body>
+    <h1>Employee List</h1>
+    <button onclick="func()">ADD</button>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% employees.forEach((employee) => { %>
+        <tr>
+          <td><%= employee.id %></td>
+          <td><a href="/employees/<%= employee.id %>"><%= employee.name %></a></td>
+          <td><a href="/update/<%= employee.id %>">Update</a></td>
+          <td><a href="/delete/<%= employee.id %>">Delete</a></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </body>
+</html>
+<script>
+  const func = () => {
+    window.location.replace("/newEmployee")
+    };
+</script>

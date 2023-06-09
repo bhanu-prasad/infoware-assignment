@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Update Employee</title>
+</head>
+<body>
+  <h1>Update Employee</h1>
+  <form action="/updateEmployees/<%= employee.id %>" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" value="<%= employee.name %>" required>
+    <br><br>
+    <label for="contact-details">Contact Details:</label>
+    <br>
+    <div id="contact-details">
+      <% contactDetails.forEach((contact) => { %>
+        <div class="contact">
+          <input type="text" name="contactType[]" value="<%= contact.type %>" placeholder="Type" required>
+          <input type="text" name="contactValue[]" value="<%= contact.value %>" placeholder="Value" required>
+        </div>
+      <% }) %>
+    </div>
+    <button type="button" onclick="addContact()">Add Contact</button>
+    <br><br>
+    <input type="submit" value="Update">
+  </form>
+
+  <script>
+    function addContact() {
+      const contactDiv = document.createElement('div');
+      contactDiv.classList.add('contact');
+      contactDiv.innerHTML = `
+        <input type="text" name="contactType[]" placeholder="Type" required>
+        <input type="text" name="contactValue[]" placeholder="Value" required>
+      `;
+      document.getElementById('contact-details').appendChild(contactDiv);
+    }
+  </script>
+</body>
+</html>
